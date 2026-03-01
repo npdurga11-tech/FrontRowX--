@@ -1,0 +1,32 @@
+# Backend
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+# NOTE: backend/.env is intentionally NOT ignored here — it contains non-secret demo values
+# and is required for docker-compose to work out of the box.
+# In a real project, you would add it to .gitignore and use .env.example instead.
+backend/venv/
+backend/.venv/
+
+# Frontend
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.production
+
+# Docker volumes
+postgres_data/
+
+# Python
+*.egg-info/
+*.pyc
+__pycache__/
+.pytest_cache/
+dist/
+build/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo

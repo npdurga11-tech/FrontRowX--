@@ -1,0 +1,123 @@
+services:
+
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: frontrowx_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: frontrowx
+      POSTGRES_PASSWORD: frontrowx123
+      POSTGRES_DB: frontrowx_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U frontrowx -d frontrowx_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # Redis Cache / Message Broker
+  redis:
+    image: redis:7-alpine
+    container_name: frontrowx_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: frontrowx_backend
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql://frontrowx:frontrowx123@db:5432/frontrowx_db
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      SECRET_KEY: super-secret-key-change-in-production
+      ACCESS_TOKEN_EXPIRE_MINUTES: "60"
+      ADMIN_EMAIL: admin@frontrowx.com
+      PYTHONPATH: /app
+      ENV: "production"
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: ["bash", "/app/entrypoint.sh"]
+
+  # Celery Worker
+  worker:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: frontrowx_worker
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql://frontrowx:frontrowx123@db:5432/frontrowx_db
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      CELERY_RESULT_BACKEND: redis://redis:6379/2
+      SECRET_KEY: super-secret-key-change-in-production
+      ADMIN_EMAIL: admin@frontrowx.com
+      PYTHONPATH: /app
+      SMTP_HOST: smtp.gmail.com
+      SMTP_PORT: 587
+      SMTP_USER: npdurga11@gmail.com
+      SMTP_PASSWORD: dzrdlcplafbiahhw
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+    command: ["celery", "-A", "app.workers.celery_app", "worker", "--loglevel=info", "--concurrency=2"]
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontrowx_frontend
+    restart: unless-stopped
+    environment:
+      # REACT_APP_API_URL must point to where the browser can reach the backend.
+      # Since the browser is on the host machine, localhost:8000 is correct here.
+      REACT_APP_API_URL: http://localhost:8000
+      HOST: "0.0.0.0"
+      CHOKIDAR_USEPOLLING: "true"
+      WDS_SOCKET_PORT: "0"
+      SKIP_PREFLIGHT_CHECK: "true"
+      DISABLE_ESLINT_PLUGIN: "true"
+      TSC_COMPILE_ON_ERROR: "true"
+      GENERATE_SOURCEMAP: "false"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+    depends_on:
+      - backend
+    stdin_open: true
+
+volumes:
+  postgres_data:

@@ -1,0 +1,8 @@
+﻿--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . process_booking_confirmation
+

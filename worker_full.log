@@ -1,0 +1,61 @@
+/usr/local/lib/python3.11/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+ 
+ -------------- celery@f9c8b4594d6a v5.3.6 (emerald-rush)
+--- ***** ----- 
+-- ******* ---- Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41 2026-03-01 07:42:45
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         frontrowx:0x744b95c41350
+- ** ---------- .> transport:   redis://redis:6379/1
+- ** ---------- .> results:     redis://redis:6379/2
+- *** --- * --- .> concurrency: 2 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . process_booking_confirmation
+
+[2026-03-01 07:42:45,473: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-03-01 07:42:45,541: INFO/MainProcess] Connected to redis://redis:6379/1
+[2026-03-01 07:42:45,548: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-03-01 07:42:45,567: INFO/MainProcess] mingle: searching for neighbors
+[2026-03-01 07:42:46,601: INFO/MainProcess] mingle: all alone
+[2026-03-01 07:42:46,678: INFO/MainProcess] celery@f9c8b4594d6a ready.
+[2026-03-01 07:43:20,192: INFO/MainProcess] Task process_booking_confirmation[ab79e002-2fb1-4c07-ae5a-a262d1ba2e96] received
+[2026-03-01 07:43:20,338: WARNING/ForkPoolWorker-2] [Celery] Starting booking confirmation for booking #22...
+[2026-03-01 07:43:26,108: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to cg2oowbg37cgglv3@ethereal.email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35988e50b2fsm818980a91.14 - gsmtp')
+[2026-03-01 07:43:29,047: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to admin@frontrowx.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2ae4651e409sm19920985ad.44 - gsmtp')
+[2026-03-01 07:43:29,047: WARNING/ForkPoolWorker-2] [Celery] Booking #22 confirmation processed successfully.
+[2026-03-01 07:43:29,054: INFO/ForkPoolWorker-2] Task process_booking_confirmation[ab79e002-2fb1-4c07-ae5a-a262d1ba2e96] succeeded in 8.850729502000377s: {'status': 'done', 'booking_id': 22}
+[2026-03-01 07:43:55,461: INFO/MainProcess] Task process_booking_confirmation[6dfb18e9-0718-4a3c-9de2-48f3620cdb67] received
+[2026-03-01 07:43:55,464: WARNING/ForkPoolWorker-2] [Celery] Starting booking confirmation for booking #23...
+[2026-03-01 07:44:00,193: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to jinhak14@gmail.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82739db3e4asm9721167b3a.28 - gsmtp')
+[2026-03-01 07:44:03,714: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to admin@frontrowx.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2adfb5c111asm105392805ad.21 - gsmtp')
+[2026-03-01 07:44:03,714: WARNING/ForkPoolWorker-2] [Celery] Booking #23 confirmation processed successfully.
+[2026-03-01 07:44:03,717: INFO/ForkPoolWorker-2] Task process_booking_confirmation[6dfb18e9-0718-4a3c-9de2-48f3620cdb67] succeeded in 8.253326177999952s: {'status': 'done', 'booking_id': 23}
+[2026-03-01 07:44:40,414: INFO/MainProcess] Task process_booking_confirmation[8b0a41b5-6896-467d-af63-f22c5c47018a] received
+[2026-03-01 07:44:40,416: WARNING/ForkPoolWorker-2] [Celery] Starting booking confirmation for booking #24...
+[2026-03-01 07:44:45,182: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to npdurga11@gmail.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-3590158f6e0sm17411026a91.1 - gsmtp')
+[2026-03-01 07:44:48,016: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to admin@frontrowx.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82739d4dc6dsm9995615b3a.6 - gsmtp')
+[2026-03-01 07:44:48,016: WARNING/ForkPoolWorker-2] [Celery] Booking #24 confirmation processed successfully.
+[2026-03-01 07:44:48,018: INFO/ForkPoolWorker-2] Task process_booking_confirmation[8b0a41b5-6896-467d-af63-f22c5c47018a] succeeded in 7.603649303000111s: {'status': 'done', 'booking_id': 24}

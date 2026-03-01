@@ -1,0 +1,2 @@
+SMTP_USER=cg2oowbg37cgglv3@ethereal.email
+SMTP_PASSWORD=rvTFQ5qAgAuUH7xWgP

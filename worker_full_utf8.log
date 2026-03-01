@@ -1,0 +1,49 @@
+/usr/local/lib/python3.11/site-packages/celery/platforms.py:829: SecurityWarning: You're running the worker with superuser privileges: this is
+absolutely not recommended!
+
+Please specify a different user using the --uid option.
+
+User information: uid=0 euid=0 gid=0 egid=0
+
+  warnings.warn(SecurityWarning(ROOT_DISCOURAGED.format(
+ 
+ -------------- celery@1923367f099c v5.3.6 (emerald-rush)
+--- ***** ----- 
+-- ******* ---- Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.41 2026-03-01 08:59:10
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         frontrowx:0x7b0b25b3bc10
+- ** ---------- .> transport:   redis://redis:6379/1
+- ** ---------- .> results:     redis://redis:6379/2
+- *** --- * --- .> concurrency: 2 (prefork)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . process_booking_confirmation
+
+[2026-03-01 08:59:10,650: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-03-01 08:59:10,728: INFO/MainProcess] Connected to redis://redis:6379/1
+[2026-03-01 08:59:10,734: WARNING/MainProcess] /usr/local/lib/python3.11/site-packages/celery/worker/consumer/consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2026-03-01 08:59:10,756: INFO/MainProcess] mingle: searching for neighbors
+[2026-03-01 08:59:11,796: INFO/MainProcess] mingle: all alone
+[2026-03-01 08:59:11,854: INFO/MainProcess] celery@1923367f099c ready.
+[2026-03-01 09:01:19,708: INFO/MainProcess] Task process_booking_confirmation[fa342a76-c2bc-4c37-ae24-bfe064f552e9] received
+[2026-03-01 09:01:20,087: WARNING/ForkPoolWorker-2] [Celery] Starting booking confirmation for booking #25...
+[2026-03-01 09:01:25,283: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to jinhak14@gmail.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2ae4bbdec99sm10494755ad.64 - gsmtp')
+[2026-03-01 09:01:28,633: WARNING/ForkPoolWorker-2] [Email Error] Failed to send to admin@frontrowx.com: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35980063f2dsm3142510a91.3 - gsmtp')
+[2026-03-01 09:01:28,634: WARNING/ForkPoolWorker-2] [Celery] Booking #25 confirmation processed successfully.
+[2026-03-01 09:01:28,667: INFO/ForkPoolWorker-2] Task process_booking_confirmation[fa342a76-c2bc-4c37-ae24-bfe064f552e9] succeeded in 8.87079390800045s: {'status': 'done', 'booking_id': 25}
