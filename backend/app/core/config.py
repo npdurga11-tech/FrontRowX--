@@ -22,7 +22,7 @@ class Settings:
     )
 
     # Redis
-    REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+    REDIS_URL: str = os.getenv("REDIS_URL", "redis://red-d6ikqhjh46gs73ev15o0:6379/0")
 
     # JWT
     SECRET_KEY: str = os.getenv("SECRET_KEY", "your-secret-key-change-in-production")
@@ -33,8 +33,8 @@ class Settings:
     SEAT_LOCK_DURATION: int = 120
 
     # Celery (uses Redis as broker)
-    CELERY_BROKER_URL: str = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/1")
-    CELERY_RESULT_BACKEND: str = os.getenv("CELERY_RESULT_BACKEND", "redis://localhost:6379/2")
+    CELERY_BROKER_URL: str = os.getenv("CELERY_BROKER_URL", "redis://red-d6ikqhjh46gs73ev15o0:6379/1")
+    CELERY_RESULT_BACKEND: str = os.getenv("CELERY_RESULT_BACKEND", "redis://red-d6ikqhjh46gs73ev15o0:6379/2")
 
     # Email — leave SMTP_PASSWORD blank to use console simulation
     SMTP_HOST: str = os.getenv("SMTP_HOST", "smtp.gmail.com")
