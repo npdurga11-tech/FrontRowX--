@@ -18,7 +18,7 @@ class Settings:
     # Database (PostgreSQL)
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL",
-        "postgresql://frontrowx:frontrowx123@localhost:5432/frontrowx_db"
+        "postgresql://neondb_owner:npg_hiwHx2deJm5k@ep-crimson-star-a16elovk-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
     )
 
     # Redis
